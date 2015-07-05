@@ -432,7 +432,7 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'test/karma.conf.js',
-        singleRun: true
+        singleRun: (grunt.option('env') === 'testing')
       }
     }
   });

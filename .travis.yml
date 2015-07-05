@@ -9,4 +9,4 @@ install:
 - bower install
 - npm install
 script:
-- grunt test
+- grunt test --env 'testing'
