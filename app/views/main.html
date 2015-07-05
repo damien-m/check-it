@@ -1,2 +1,16 @@
-<div class="">
+<div class="checklist-wrapper">
+  <header>
+    <div class="input-group">
+      <input type="text" ng-model="main.newItem.text"/>
+      <button class="button add-item" ng-click="main.addItem()">Add</button>
+    </div>
+  <section>
+    <div class="checklist-wrapper">
+      <checklist-item item="item" ng-repeat="item in main.items">
+      </checklist-item>
+    </div>
+  </section>
+  <footer>
+    {{main.items.length}} items
+  </footer>
 </div>

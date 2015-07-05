@@ -8,11 +8,14 @@
  * Controller of the checkItApp
  */
 angular.module('checkItApp')
-  .controller('MainCtrl', function ($scope, $localStorage) {
+  .controller('MainCtrl', function ($localStorage) {
     this.items = $localStorage.items || [];
+    this.newItem = {text: '', completed: false};
 
-    this.addItem = function addItem(item) {
-      this.items.push(item);
+    this.addItem = function addItem() {
+      if(this.newItem.text){
+        this.items.push(this.newItem);
+      }
     };
 
     this.removeItem = function removeItem(index) {
