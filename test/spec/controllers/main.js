@@ -50,7 +50,7 @@ describe('Controller: MainCtrl', function () {
 
     it('saves the list to localStorage', function(){
       var itemText = "Local Storage 1";
-      MainCtrl.newItemText = itemText
+      MainCtrl.newItemText = itemText;
       MainCtrl.addItem();
       MainCtrl.saveItems();
       expect(MainCtrl.localStorage[0].text).toEqual(itemText);

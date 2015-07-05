@@ -15,10 +15,14 @@ angular.module('checkItApp')
                   '<div class="checklist-item-toggler">' +
                     '<input type="checkbox" ng-model="item.completed" />' +
                   '</div>' +
+                  '<div class="checklist-item-remove" ng-if="editable">' +
+                    '<button class="remove-button">Remove</button>' +
+                  '</div>' +
                 '</div>',
       restrict: 'E',
       scope: {
-        item: '='
+        item: '=',
+        editable: '='
       },
       link: function postLink(scope, element) {
         var checkbox = angular.element(element.find('input'));
@@ -26,7 +30,6 @@ angular.module('checkItApp')
         checkbox.bind('click', function(){
           scope.item.checked = !scope.item.checked;
         });
-
       }
     };
   });
