@@ -9,11 +9,23 @@
 angular.module('checkItApp')
   .directive('checklistItem', function () {
     return {
-      template: '<div class="checklist-item">{{item.text}}</div>',
+      // TODO: Use templateURL
+      template: '<div class="checklist-item-wrapper" ng-class="{completed: item.completed}">' +
+                  '<div class="checklist-item-text">{{item.text}}</div>' +
+                  '<div class="checklist-item-toggler">' +
+                    '<input type="checkbox" ng-model="item.completed" />' +
+                  '</div>' +
+                '</div>',
       restrict: 'E',
       scope: {
         item: '='
       },
-      link: function postLink(scope, element) {}
+      link: function postLink(scope, element) {
+        var checkbox = angular.element(element.find('input'));
+
+        checkbox.bind('click', function(){
+          scope.item.checked = !scope.item.checked;
+        });
+      }
     };
   });

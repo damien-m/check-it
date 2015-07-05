@@ -25,7 +25,6 @@ describe('Directive: checklistItem', function () {
     scope.checkListItem = {
       text: 'First Item'
     };
-
     element = compileDirective(elementDOM, scope);
 
     expect(element.text()).toBe('First Item');
@@ -36,10 +35,10 @@ describe('Directive: checklistItem', function () {
       completed: false
     };
     element = compileDirective(elementDOM, scope);
+    var wrapperElement = angular.element(element.find('div')[0]);
     scope.checkListItem.completed = true;
     scope.$apply();
-
-    expect(element.hasClass('completed')).toBe(true);
-
+    
+    expect(wrapperElement.hasClass('completed')).toBe(true);
   }));
 });
