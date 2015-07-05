@@ -6,18 +6,40 @@ describe('Directive: checklistItem', function () {
   beforeEach(module('checkItApp'));
 
   var element,
-    scope;
+    elementDOM,
+    scope,
+    compileDirective;
 
-  beforeEach(inject(function ($rootScope) {
+  beforeEach(inject(function ($rootScope, $compile) {
     scope = $rootScope.$new();
+    elementDOM = angular.element('<checklist-item item="checkListItem"></checklist-item>');
+
+    compileDirective = function compileDirective(element, scope){
+      var compiled = $compile(element)(scope);
+      scope.$apply();
+      return compiled;
+    };
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    scope.item = {
+  it('shows the element text', inject(function () {
+    scope.checkListItem = {
       text: 'First Item'
     };
-    element = angular.element('<checklist-item item=></checklist-item>');
-    element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the checklistItem directive');
+
+    element = compileDirective(elementDOM, scope);
+
+    expect(element.text()).toBe('First Item');
+  }));
+
+  it('toggles `completed` class when clicked', inject(function(){
+    scope.checkListItem = {
+      completed: false
+    };
+    element = compileDirective(elementDOM, scope);
+    scope.checkListItem.completed = true;
+    scope.$apply();
+
+    expect(element.hasClass('completed')).toBe(true);
+
   }));
 });

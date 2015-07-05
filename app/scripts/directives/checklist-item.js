@@ -9,10 +9,11 @@
 angular.module('checkItApp')
   .directive('checklistItem', function () {
     return {
-      templateUrl: '../template/checklist-item.html',
+      template: '<div class="checklist-item">{{item.text}}</div>',
       restrict: 'E',
-      link: function postLink(scope, element) {
-        element.text("THIS IT");
-      }
+      scope: {
+        item: '='
+      },
+      link: function postLink(scope, element) {}
     };
   });
