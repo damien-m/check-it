@@ -21,10 +21,17 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('adds an item to the list', function() {
-      MainCtrl.newItem = {text: "My First Item", completed: false};
+      MainCtrl.newItemText = "My First Item";
       MainCtrl.addItem();
 
       expect(MainCtrl.items.length).toBe(1);
+    });
+
+    it('resets the newItem object when item added', function(){
+      MainCtrl.newItemText = "Added";
+      MainCtrl.addItem();
+
+      expect(MainCtrl.newItemText).toEqual('');
     });
 
     it("doesn't allow blank text to be added", function(){
@@ -34,6 +41,7 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('removes an item from the array at given index', function() {
+      // FIXME: This passes with a changed api...
       MainCtrl.addItem({text: "An Item"});
       MainCtrl.removeItem(0);
 
@@ -41,16 +49,15 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('saves the list to localStorage', function(){
-      var item = {text: "Local Storage 1"};
-      MainCtrl.newItem = item;
+      var itemText = "Local Storage 1";
+      MainCtrl.newItemText = itemText
       MainCtrl.addItem();
       MainCtrl.saveItems();
-      expect(MainCtrl.localStorage[0].text).toEqual(item.text);
+      expect(MainCtrl.localStorage[0].text).toEqual(itemText);
     });
   });
 
   describe("With a filled localStorage Object", function() {
-
     beforeEach(inject(function($controller) {
       var filledLocalStorage = {
         items : [{text: "LS Item 1"}, {text: "LS Item 2"}]

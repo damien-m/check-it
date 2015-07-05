@@ -10,11 +10,17 @@
 angular.module('checkItApp')
   .controller('MainCtrl', function ($localStorage) {
     this.items = $localStorage.items || [];
-    this.newItem = {text: '', completed: false};
+    this.newItemText = '';
 
     this.addItem = function addItem() {
-      if(this.newItem.text){
-        this.items.push(this.newItem);
+      if (this.newItemText.length) {
+
+        this.items.push({
+          text: this.newItemText,
+          completed: false
+        });
+
+        this.newItemText = '';
       }
     };
 
