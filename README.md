@@ -1,6 +1,7 @@
 # check-it
 [![Build Status](https://travis-ci.org/damien-m/check-it.svg?branch=master)](https://travis-ci.org/damien-m/check-it)
 [![Code Climate](https://codeclimate.com/github/damien-m/check-it/badges/gpa.svg)](https://codeclimate.com/github/damien-m/check-it)
+[![Test Coverage](https://codeclimate.com/github/damien-m/check-it/badges/coverage.svg)](https://codeclimate.com/github/damien-m/check-it/coverage)
 
 A Simple checklist creator built with angular, using localstorage and firebase
 as a persistence layer and using Facebook auth for sign-in.

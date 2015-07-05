@@ -64,6 +64,21 @@ module.exports = function(config) {
       "karma-jasmine"
     ],
 
+    preprocessors: {
+      'app/scripts/**/*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [
+        { type : 'html', subdir : 'html' },
+        { type: 'lcovonly', subdir: '.', file: 'coverage.info'}
+      ]
+    },
+
+    //Reporters
+    reporters: ['progress', 'coverage'],
+
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,

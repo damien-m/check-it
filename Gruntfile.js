@@ -432,7 +432,12 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'test/karma.conf.js',
-        singleRun: (grunt.option('env') === 'testing')
+        singleRun: (grunt.option('env') === 'testing'),
+        plugins:[
+          'karma-jasmine',
+          'karma-coverage',
+          'karma-phantomjs-launcher'
+        ]
       }
     }
   });
