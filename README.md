@@ -1,7 +1,8 @@
 # check-it
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.12.0.
+A Simple checklist creator built with angular, using localstorage and firebase
+as a persistence layer and using Facebook auth for sign-in.
+
 
 ## Build & development
 
