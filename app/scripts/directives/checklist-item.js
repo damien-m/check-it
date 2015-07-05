@@ -26,6 +26,7 @@ angular.module('checkItApp')
         checkbox.bind('click', function(){
           scope.item.checked = !scope.item.checked;
         });
+
       }
     };
   });
