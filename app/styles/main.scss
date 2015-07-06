@@ -1,8 +1,8 @@
 @import 'variables';
 @import 'base';
 
-@import "compass/layout/grid-background";
-
 //Components
 @import 'components/checklist-container';
 @import 'components/checklist-item';
+
+@import 'app';

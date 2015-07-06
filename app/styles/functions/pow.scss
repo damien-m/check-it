@@ -1,0 +1,19 @@
+// A power calculation function. See:
+// http://sassmeister.com/gist/10620fefd1ed75189f1b
+@function pow($x, $y) {
+  $ret: 1;
+
+  @if $y > 0 {
+    @for $i from 1 through $y {
+        $ret: $ret * $x;
+    }
+  }
+
+  @else {
+    @for $i from $y to 0 {
+        $ret: $ret / $x;
+    }
+  }
+
+  @return $ret;
+}

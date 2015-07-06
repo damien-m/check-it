@@ -1,8 +1,5 @@
+//Things needed everywhere
 @import 'reset';
-
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+@import 'mixins/box-sizing';
+@import 'mixins/measures';
+@import 'mixins/colour';

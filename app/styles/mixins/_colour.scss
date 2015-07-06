@@ -1,0 +1,10 @@
+$tint-percentage: 5%!default;
+
+@function colour($colour-name, $scale:0){
+  $colour-val: map-get($base-colour-palette, $colour-name);
+  @if $scale < 0 {
+    @return darken($colour-val, abs($scale) * $tint-percentage);
+  }@else{
+    @return lighten($colour-val, $scale * $tint-percentage);
+  }
+}
