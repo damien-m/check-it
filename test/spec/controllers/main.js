@@ -5,12 +5,12 @@ describe('Controller: MainCtrl', function () {
   // load the controller's module
   beforeEach(module('checkItApp'));
 
-  var MainCtrl;
+  var MainCtrl, localStorage;
 
   describe("With an empty localStorage object", function(){
     // Initialize the controller and a mock scope
     beforeEach(inject(function ($controller) {
-      var localStorage = {};
+      localStorage = {};
       MainCtrl = $controller('MainCtrl', {
         $localStorage: localStorage
       });
@@ -53,7 +53,7 @@ describe('Controller: MainCtrl', function () {
       MainCtrl.newItemText = itemText;
       MainCtrl.addItem();
       MainCtrl.saveItems();
-      expect(MainCtrl.localStorage[0].text).toEqual(itemText);
+      expect(localStorage.items[0].text).toEqual(itemText);
     });
   });
 

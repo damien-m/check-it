@@ -29,7 +29,7 @@ angular.module('checkItApp')
     };
 
     this.saveItems = function saveList(){
-      this.localStorage = this.items;
+      $localStorage.items = this.items;
     };
 
   });
