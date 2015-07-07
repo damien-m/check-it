@@ -1,3 +1,5 @@
+$border-colour: colour('grey', -2);
+
 .checklist-item-wrapper {
-  
+  border-bottom: $border-colour;
 }

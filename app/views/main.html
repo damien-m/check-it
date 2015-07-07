@@ -6,11 +6,22 @@
     </div>
   <section>
     <div class="checklist-wrapper">
-      <checklist-item item="item" ng-repeat="item in main.items">
+      <checklist-item
+        item="item"
+        ng-repeat="item in main.items">
       </checklist-item>
+      <span class="checklist-empty" ng-if="!main.items.length">
+        Get started with a checklist!
+      </span>
     </div>
   </section>
   <footer>
-    {{main.items.length}} items
+    <span class="checklist-total" ng-if="main.items.length">
+      {{main.items.length}} items
+    </span>
+    <button
+      class="button"
+      ng-show="main.items.length"
+      ng-click="main.saveList()">Save</button>
   </footer>
 </div>

@@ -6,8 +6,11 @@ body {
 
 header {
   text-align: center;
-  h1 {
+  .app-title{
     margin-bottom: spacing(1);
-    // @include font-size(1);
+    font-size: font-scale(3);
+  }
+  .app-sub-title {
+    font-size: font-scale(2);
   }
 }
