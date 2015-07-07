@@ -1,5 +1,12 @@
 @import 'variables';
-@import 'base';
+//Things needed everywhere
+@import 'reset';
+@import 'functions/pow';
+@import 'functions/font-sizing';
+
+@import 'mixins/box-sizing';
+@import 'mixins/font-size';
+@import 'mixins/colour';
 
 //Components
 @import 'components/checklist-container';

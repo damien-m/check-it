@@ -15,3 +15,16 @@
 @function columns($x, $size: 'medium') {
   @return spacing(4, $size) * $x;
 }
+
+@mixin font-size($units, $size: 'medium') {
+  $display: map-get($displays, $size);
+  $unit:    round(map-get($display, 'unit'));
+  $lh:      $unit;
+
+  @while $lh < font-scale($units, $size) {
+    $lh: $lh + $unit;
+  }
+
+  font-size: font-scale($units, $size);
+  line-height: $lh;
+}

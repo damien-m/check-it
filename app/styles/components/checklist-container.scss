@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'mixins/media-queries';
+
 $checklist-bg-colour: colour('white', 1);
 $empty-list-colour: colour('grey', 1);
 
