@@ -1,8 +1,15 @@
 $checklist-bg-colour: colour('white', 1);
 
 .checklist-container {
+  margin: 0 auto;
+  max-width: 90vw;
   padding: spacing(1);
   border: 1px solid colour('grey', -2);
   text-align: center;
   background: $checklist-bg-colour;
+  font-size: font-scale(1);
+
+  @include mq($smartphone-max-width) {
+    max-width: 70vw;
+  }
 }

@@ -1,0 +1,6 @@
+@mixin mq($size, $format:screen){
+
+  @media #{$format} and(min-width: $size){
+    @content;
+  }
+}

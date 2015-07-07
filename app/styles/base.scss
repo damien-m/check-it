@@ -1,5 +1,10 @@
 //Things needed everywhere
 @import 'reset';
+
+@import 'functions/pow';
+@import 'functions/font-sizing';
+
 @import 'mixins/box-sizing';
-@import 'mixins/measures';
+@import 'mixins/font-size';
 @import 'mixins/colour';
+@import 'mixins/media-queries';
