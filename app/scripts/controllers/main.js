@@ -10,18 +10,23 @@
 angular.module('checkItApp')
   .controller('MainCtrl', function ($localStorage) {
     this.items = $localStorage.items || [];
-    this.newItemText = '';
+    this.newItem = {
+      title: '',
+      text: ''
+    };
     this.editable = false;
 
     this.addItem = function addItem() {
-      if (this.newItemText.length) {
+      if (this.newItem.title.length && this.newItem.text.length) {
 
         this.items.push({
-          text: this.newItemText,
+          title: this.newItem.title,
+          text: this.newItem.text,
           completed: false
         });
 
-        this.newItemText = '';
+        this.newItem.title = '';
+        this.newItem.text = '';
       }
     };
 
@@ -35,6 +40,5 @@ angular.module('checkItApp')
 
     this.toggleEditable = function toggleEditable() {
       this.editable = !this.editable;
-    }
-
+    };
   });

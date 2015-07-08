@@ -7,6 +7,7 @@ describe('Directive: checklistItem', function () {
 
   var element,
     elementDOM,
+    angEl,
     scope,
     compileDirective;
 
@@ -20,18 +21,21 @@ describe('Directive: checklistItem', function () {
       scope.$apply();
       return compiled;
     };
+
+    angEl = function wrappedElement(element) {
+      return angular.element(element);
+    };
   }));
 
   it('shows the element text', function () {
     scope.checkListItem = {
-      text: 'First Item'
+      title: 'First Item'
     };
     element = compileDirective(elementDOM, scope);
 
-    var elementText  =
-      angular.element(element[0].querySelector('.checklist-item-text'));
+    var elementTitle  = angEl(element[0].querySelector('.checklist-item-title'));
 
-    expect(elementText.text()).toBe('First Item');
+    expect(elementTitle.text()).toBe('First Item');
   });
 
   it('toggles `completed` class when clicked', function(){
@@ -39,7 +43,7 @@ describe('Directive: checklistItem', function () {
       completed: false
     };
     element = compileDirective(elementDOM, scope);
-    var wrapperElement = angular.element(element.find('div')[0]);
+    var wrapperElement = angEl(element.find('div')[0]);
     scope.checkListItem.completed = true;
     scope.$apply();
 

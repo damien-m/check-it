@@ -21,21 +21,32 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('adds an item to the list', function() {
-      MainCtrl.newItemText = "My First Item";
+      MainCtrl.newItem = {
+        title: "My First Item",
+        text: "Lorem Ipsum"
+      };
+
       MainCtrl.addItem();
 
       expect(MainCtrl.items.length).toBe(1);
     });
 
     it('resets the newItem object when item added', function(){
-      MainCtrl.newItemText = "Added";
+      MainCtrl.newItem = {
+        title: "Added",
+        text: "Lorem"
+      };
+
       MainCtrl.addItem();
 
-      expect(MainCtrl.newItemText).toEqual('');
+      expect(MainCtrl.newItem).toEqual({title: '', text: ''});
     });
 
     it("doesn't allow blank text to be added", function(){
-      MainCtrl.newItem = {text: ''};
+      MainCtrl.newItem = {
+        title: '',
+        text: ''
+      };
       MainCtrl.addItem();
       expect(MainCtrl.items.length).toBe(0);
     });
@@ -50,17 +61,27 @@ describe('Controller: MainCtrl', function () {
 
     it('saves the list to localStorage', function(){
       var itemText = "Local Storage 1";
-      MainCtrl.newItemText = itemText;
+      MainCtrl.newItem = {
+        title: itemText,
+        text: "Lorem"
+      };
+
       MainCtrl.addItem();
       MainCtrl.saveItems();
-      expect(localStorage.items[0].text).toEqual(itemText);
+      expect(localStorage.items[0].title).toEqual(itemText);
     });
   });
 
   describe("With a filled localStorage Object", function() {
     beforeEach(inject(function($controller) {
       var filledLocalStorage = {
-        items : [{text: "LS Item 1"}, {text: "LS Item 2"}]
+        items : [{
+          title: "LS Item 1",
+          text: "Lorem 1"
+        },{
+          title: "LS Item 2",
+          text: "Lorem 2"
+        }]
       };
 
       MainCtrl = $controller('MainCtrl', {
@@ -69,7 +90,7 @@ describe('Controller: MainCtrl', function () {
     }));
 
     it('retrieves an item from localstorage on load', function(){
-      expect(MainCtrl.items[0].text).toBe("LS Item 1");
+      expect(MainCtrl.items[0].title).toBe("LS Item 1");
     });
   });
 });

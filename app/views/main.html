@@ -1,7 +1,8 @@
 <div class="checklist-container">
   <header>
     <div class="input-group">
-      <input type="text" ng-model="main.newItemText"/>
+      <input type="text" ng-model="main.newItem.title"/>
+      <textarea ng-model="main.newItem.text"></textarea>
       <button class="button add-item" ng-click="main.addItem()">Add</button>
     </div>
   </header>
