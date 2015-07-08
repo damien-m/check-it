@@ -11,6 +11,7 @@ angular.module('checkItApp')
   .controller('MainCtrl', function ($localStorage) {
     this.items = $localStorage.items || [];
     this.newItemText = '';
+    this.editable = false;
 
     this.addItem = function addItem() {
       if (this.newItemText.length) {
@@ -31,5 +32,9 @@ angular.module('checkItApp')
     this.saveItems = function saveList(){
       $localStorage.items = this.items;
     };
+
+    this.toggleEditable = function toggleEditable() {
+      this.editable = !this.editable;
+    }
 
   });
