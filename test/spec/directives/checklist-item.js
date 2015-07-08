@@ -10,10 +10,11 @@ describe('Directive: checklistItem', function () {
     scope,
     compileDirective;
 
+  beforeEach(module('dir-templates'));
+
   beforeEach(inject(function ($rootScope, $compile) {
     scope = $rootScope.$new();
     elementDOM = angular.element('<checklist-item item="checkListItem" editable="editable"></checklist-item>');
-
     compileDirective = function compileDirective(element, scope){
       var compiled = $compile(element)(scope);
       scope.$apply();
@@ -27,7 +28,10 @@ describe('Directive: checklistItem', function () {
     };
     element = compileDirective(elementDOM, scope);
 
-    expect(element.text()).toBe('First Item');
+    var elementText  =
+      angular.element(element[0].querySelector('.checklist-item-text'));
+
+    expect(elementText.text()).toBe('First Item');
   });
 
   it('toggles `completed` class when clicked', function(){
