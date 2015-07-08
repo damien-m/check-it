@@ -1,5 +1,15 @@
-$border-colour: colour('grey', -2);
+@import 'variables';
+@import 'mixins/media-queries';
+
+$border-colour: colour('light-grey', -2);
 
 .checklist-item-wrapper {
+  display: flex;
+  width: 90%;
+  padding: spacing(.5);
   border-bottom: $border-colour;
+
+  @include mq($smartphone-max-width) {
+    padding: spacing(1)
+  }
 }

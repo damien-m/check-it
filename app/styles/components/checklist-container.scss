@@ -1,14 +1,17 @@
 @import 'variables';
 @import 'mixins/media-queries';
+@import 'mixins/button';
 
 $checklist-bg-colour: colour('white', 1);
-$empty-list-colour: colour('grey', 1);
+$empty-list-colour: colour('light-grey', 1);
+$header-bg-colour: colour('blue');
+$footer-bg-colour: colour('light-grey', -3);
+$standard-padding: spacing(1);
 
 .checklist-container {
   margin: 0 auto;
   max-width: 90vw;
-  padding: spacing(.5);
-  border: 1px solid colour('grey', -2);
+  border: 1px solid colour('light-grey', -2);
   text-align: center;
   background: $checklist-bg-colour;
   font-size: font-scale(1);
@@ -17,12 +20,39 @@ $empty-list-colour: colour('grey', 1);
     max-width: 70vw;
   }
 
+
+  header {
+    padding: $standard-padding;
+    background: $header-bg-colour;
+
+    .button {
+      @include button('green');
+    }
+  }
+
   .checklist-wrapper {
     margin: spacing(1) 0;
+
+    @include mq($smartphone-max-width) {
+      margin: spacing(2.5) 0;
+    }
   }
 
   .checklist-empty {
     color: $empty-list-colour;
     font-style: italic;
+  }
+
+  footer {
+    padding: $standard-padding;
+    background: $footer-bg-colour;
+
+    .save-list {
+      @include button('accent-blue');
+    }
+
+    .edit-list {
+      @include button('red')
+    }
   }
 }

@@ -1,0 +1,9 @@
+$button-border-radius: 5px;
+
+@mixin button($buttonColour) {
+  padding: spacing(.25) spacing(.5);
+  border: 1px solid colour($buttonColour, -2);
+  border-radius: $button-border-radius;
+  background: colour($buttonColour);
+  color: colour('white');
+}
