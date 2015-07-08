@@ -1,1 +1,9 @@
-<div class="checklist-item">{item.text}</div>
+<div class="checklist-item-wrapper" ng-class="{completed: item.completed}">
+  <div class="checklist-item-text">{{item.text}}</div>
+  <div class="checklist-item-toggler">
+    <input type="checkbox" ng-model="item.completed" />
+  </div>
+  <div class="checklist-item-remove" ng-if="editable">
+    <button class="remove-button" ng-click="removeItem()">Remove</button>
+  </div>
+</div>

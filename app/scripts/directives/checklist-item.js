@@ -10,15 +10,7 @@ angular.module('checkItApp')
   .directive('checklistItem', function () {
     return {
       // TODO: Use templateURL
-      template: '<div class="checklist-item-wrapper" ng-class="{completed: item.completed}">' +
-                  '<div class="checklist-item-text">{{item.text}}</div>' +
-                  '<div class="checklist-item-toggler">' +
-                    '<input type="checkbox" ng-model="item.completed" />' +
-                  '</div>' +
-                  '<div class="checklist-item-remove" ng-if="editable">' +
-                    '<button class="remove-button">Remove</button>' +
-                  '</div>' +
-                '</div>',
+      templateUrl: '/scripts/templates/checklist-item.html',
       restrict: 'E',
       scope: {
         item: '=',
