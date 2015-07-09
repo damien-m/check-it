@@ -14,11 +14,12 @@ angular.module('checkItApp')
       restrict: 'E',
       scope: {
         item: '=',
-        editable: '='
+        editable: '=',
+        remove: '&'
       },
       link: function postLink(scope, element) {
         var checkbox = angular.element(element.find('input'));
-
+        
         checkbox.bind('click', function(){
           scope.item.checked = !scope.item.checked;
         });

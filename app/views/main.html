@@ -1,10 +1,14 @@
 <div class="checklist-container">
   <header>
     <div class="input-group">
+      <label for="new-item-title">Title: </label>
       <input type="text" ng-model="main.newItem.title"/>
-      <textarea ng-model="main.newItem.text"></textarea>
-      <button class="button add-item" ng-click="main.addItem()">Add</button>
     </div>
+    <div class="input-group">
+      <label for="new-item-text">Text: </label>
+      <textarea ng-model="main.newItem.text"></textarea>
+    </div>
+    <button class="button add-item" ng-click="main.addItem()">Add</button>
   </header>
   <section>
     <div class="checklist-wrapper">
@@ -12,6 +16,7 @@
         item="item"
         ng-repeat="item in main.items"
         editable="main.editable"
+        remove="main.removeListItem(item)"
         >
       </checklist-item>
       <span class="checklist-empty" ng-if="!main.items.length">

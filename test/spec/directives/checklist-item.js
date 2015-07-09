@@ -57,4 +57,28 @@ describe('Directive: checklistItem', function () {
 
     expect(removeButton.length).toBe(1);
   });
+
+  it("fires the remove function passed to it from it's parent ", function() {
+    // FIXME: This is overly complicated and possibly not working...
+    var parentScope = {
+      removeFn: function(){}
+    };
+    spyOn(parentScope, 'removeFn');
+
+    var scopeItem = {title: 'Test', text: 'Lorem'};
+    scope.removeFn = parentScope.removeFn;
+    scope.editable = true;
+    scope.checklistItem = scopeItem;
+
+    var localDOM = '<checklist-item ' +
+      'item="checkListItem" editable="editable" remove="removeFn(item)">' +
+    '</checklist-item>';
+
+    element = compileDirective(localDOM, scope);
+    var removeButton = angEl(element.find('button')[0]);
+    removeButton.eq(0).click();
+
+    scope.$apply();
+    expect(parentScope.removeFn).toHaveBeenCalled();
+  });
 });

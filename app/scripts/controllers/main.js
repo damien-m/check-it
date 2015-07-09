@@ -30,8 +30,9 @@ angular.module('checkItApp')
       }
     };
 
-    this.removeItem = function removeItem(index) {
-      this.items.splice(index, 1);
+    this.removeListItem = function removeListItem(item) {
+      // console.log("REMOVE...", item);
+      // this.items.splice(index, 1);
     };
 
     this.saveItems = function saveList(){

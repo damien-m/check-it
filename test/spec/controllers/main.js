@@ -54,7 +54,7 @@ describe('Controller: MainCtrl', function () {
     it('removes an item from the array at given index', function() {
       // FIXME: This passes with a changed api...
       MainCtrl.addItem({text: "An Item"});
-      MainCtrl.removeItem(0);
+      MainCtrl.removeListItem(0);
 
       expect(MainCtrl.items.length).toBe(0);
     });
