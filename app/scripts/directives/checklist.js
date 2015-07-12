@@ -54,7 +54,7 @@ angular.module('checkItApp')
           this.updatable = false;
         };
 
-        this.toggleUpdatable = function toggleUpdatable() {
+        this.toggleUpdateable = function toggleUpdateable() {
           this.updateable = !this.updateable;
         };
       }
