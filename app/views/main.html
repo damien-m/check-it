@@ -31,6 +31,7 @@
     <div class="actions-wrapper" >
       <button
         class="button save-list"
+        ng-if="main.notSaved()"
         ng-click="main.saveItems()">Save</button>
         <button
         ng-click="main.toggleEditable()"

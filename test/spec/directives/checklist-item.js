@@ -1,5 +1,5 @@
 'use strict';
-
+/* globals $ */
 describe('Directive: checklistItem', function () {
 
   // load the directive's module
@@ -50,14 +50,6 @@ describe('Directive: checklistItem', function () {
     expect(wrapperElement.hasClass('completed')).toBe(true);
   });
 
-  it('shows the remove button if the item is editable', function(){
-    scope.editable = true;
-    element = compileDirective(elementDOM, scope);
-    var removeButton = element.find('button');
-
-    expect(removeButton.length).toBe(1);
-  });
-
   it("fires the remove function passed to it from it's parent ", function() {
     var parentScope = jasmine.createSpyObj('parentScope', ['removeFn']);
     var scopeItem = {title: 'Test', text: 'Lorem'};
@@ -70,10 +62,20 @@ describe('Directive: checklistItem', function () {
     '</checklist-item>';
 
     element = compileDirective(localDOM, scope);
-    var removeButton = angEl(element.find('button')[0]);
+    var removeButton = angEl($(element).find('.remove-button')[0]);
     removeButton.eq(0).click();
 
     scope.$apply();
     expect(parentScope.removeFn).toHaveBeenCalled();
+  });
+
+  describe('when the item is editable', function() {
+    it('shows the remove button if the item is editable', function(){
+      scope.editable = true;
+      element = compileDirective(elementDOM, scope);
+      var removeButton = $(element).find('.remove-button');
+
+      expect(removeButton.length).toBe(1);
+    });
   });
 });

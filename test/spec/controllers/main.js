@@ -31,6 +31,16 @@ describe('Controller: MainCtrl', function () {
       expect(MainCtrl.items.length).toBe(1);
     });
 
+    it('shows the save button', function(){
+      MainCtrl.newItem = {
+        title: "My First Item",
+        text: "Lorem Ipsum"
+      };
+
+      MainCtrl.addItem();
+      expect(MainCtrl.notSaved()).toBe(true);
+    });
+
     it('resets the newItem object when item added', function(){
       MainCtrl.newItem = {
         title: "Added",

@@ -16,6 +16,10 @@ angular.module('checkItApp')
     };
     this.editable = false;
 
+    this.notSaved = function notSaved() {
+      return this.items.length && !$localStorage.items;
+    };
+
     this.addItem = function addItem() {
       if (this.newItem.title.length && this.newItem.text.length) {
         this.items.push({

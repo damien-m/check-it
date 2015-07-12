@@ -3,9 +3,14 @@
     <input type="checkbox" ng-model="item.completed"/>
   </div>
   <div class="checklist-text-wrapper">
-    <div class="checklist-item-title">{{item.title}}</div>
-    <div class="checklist-item-text">{{item.text}}</div>
-    <div class="checklist-item-remove" ng-if="editable">
+    <div ng-if="!editable">
+      <div class="checklist-item-title">{{item.title}}</div>
+      <div class="checklist-item-text">{{item.text}}</div>
+    </div>
+    <div ng-if="editable">
+      <input type="text" ng-model="item.title" />
+      <textarea ng-model="item.text"></textarea>
+    <div class="checklist-item-actions">
       <button class="remove-button" ng-click="remove(item)">Remove</button>
     </div>
   </div>
