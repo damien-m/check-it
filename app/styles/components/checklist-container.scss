@@ -55,7 +55,7 @@ $label-colour: colour('white',3);
   }
 
   .checklist-wrapper {
-    margin: spacing(1) 0;
+    margin: spacing(.25) 0;
 
     @include mq($smartphone-max-width) {
       margin: spacing(2.5) 0;

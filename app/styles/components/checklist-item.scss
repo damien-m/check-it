@@ -1,15 +1,54 @@
 @import 'variables';
 @import 'mixins/media-queries';
+@import 'mixins/font-size';
 
 $border-colour: colour('light-grey', -2);
+$title-colour: colour('accent-blue');
 
 .checklist-item-wrapper {
   display: flex;
+  flex-direction: row;
   width: 90%;
-  padding: spacing(.5);
-  border-bottom: $border-colour;
+  padding: spacing(.5) 0;
+  margin: spacing(.25) auto 0;
+  border-bottom: 1px solid $border-colour;
 
-  @include mq($smartphone-max-width) {
-    padding: spacing(1)
+  .checklist-item-toggler {
+    display:flex;
+    flex: 1 spacing(1);
+    flex-shrink: 0;
+    max-width: columns(1.25);
+    padding: spacing(.5);
+
+    input {
+      display: block;
+      border: 1px solid red;
+      align-content: center;
+    }
+
+  }
+
+  .checklist-text-wrapper {
+    display:flex;
+    flex-direction: column;
+    flex: 1 80%;
+  }
+
+  .checklist-item-title {
+    @include font-size(2);
+    color: $title-colour;
+  }
+
+  .checklist-item-title,
+  .checklist-item-text {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+
+  .checklist-item-text {
+    margin-top: spacing(.25);
   }
 }

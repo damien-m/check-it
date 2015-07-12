@@ -2,9 +2,11 @@
   <div class="checklist-item-toggler">
     <input type="checkbox" ng-model="item.completed"/>
   </div>
-  <div class="checklist-item-title">{{item.title}}</div>
-  <div class="checklist-item-text">{{item.text}}</div>
-  <div class="checklist-item-remove" ng-if="editable">
-    <button class="remove-button" ng-click="remove(item)">Remove</button>
+  <div class="checklist-text-wrapper">
+    <div class="checklist-item-title">{{item.title}}</div>
+    <div class="checklist-item-text">{{item.text}}</div>
+    <div class="checklist-item-remove" ng-if="editable">
+      <button class="remove-button" ng-click="remove(item)">Remove</button>
+    </div>
   </div>
 </div>
