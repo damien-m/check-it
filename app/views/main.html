@@ -12,6 +12,12 @@
   </header>
   <section>
     <div class="checklist-wrapper">
+      <button
+        class="button remove-all-button"
+        ng-show="main.editable"
+        ng-click="main.removeAllItems()">
+        Remove All
+      </button>
       <checklist-item
         item="item"
         ng-repeat="item in main.items"

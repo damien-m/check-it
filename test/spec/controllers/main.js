@@ -62,7 +62,6 @@ describe('Controller: MainCtrl', function () {
     });
 
     it('removes an item from the list', function() {
-      // FIXME: This passes with a changed api...
       var newItem = {
         title: "A Title",
         text: "An Item",
@@ -73,6 +72,30 @@ describe('Controller: MainCtrl', function () {
       MainCtrl.removeListItem(newItem);
 
       expect(MainCtrl.items.length).toBe(0);
+    });
+
+    describe('removing all from the list', function(){
+      beforeEach(function(){
+        for(var i=0; i < 3; i++){
+          MainCtrl.newItem = {
+            title: "A Title " + i,
+            text: "An Item",
+            $$hashkey: "_HASHKEY-" + i + "_"
+          };
+          MainCtrl.addItem();
+        }
+      });
+
+      it('removes all from the list', function() {
+        MainCtrl.removeAllItems();
+        expect(MainCtrl.items.length).toBe(0);
+      });
+
+      it('sets editable false', function() {
+        MainCtrl.editable = true;
+        MainCtrl.removeAllItems();
+        expect(MainCtrl.editable).toBe(false);
+      });
     });
 
     it('saves the list to localStorage', function(){
@@ -118,6 +141,11 @@ describe('Controller: MainCtrl', function () {
         MainCtrl.removeListItem(itemToRemove);
 
         expect(filledLocalStorage.items[0].title).toBe('LS Item 2');
+    });
+
+    it('removes all items from localStorgage', function(){
+      MainCtrl.removeAllItems();
+      expect(filledLocalStorage.items.length).toBe(0);
     });
   });
 });

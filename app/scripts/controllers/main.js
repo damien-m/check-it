@@ -46,6 +46,11 @@ angular.module('checkItApp')
       }
     };
 
+    this.removeAllItems = function removeAllItems() {
+      $localStorage.items = this.items = [];
+      this.editable = false;
+    };
+
     this.saveItems = function saveList(){
       $localStorage.items = this.items;
     };
