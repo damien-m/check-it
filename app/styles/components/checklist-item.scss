@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'mixins/media-queries';
 @import 'mixins/font-size';
+@import 'mixins/button';
 
 $border-colour: colour('light-grey', -2);
 $title-colour: colour('accent-blue');
@@ -25,7 +26,11 @@ $title-colour: colour('accent-blue');
       border: 1px solid red;
       align-content: center;
     }
+  }
 
+  .remove-button {
+    @include button('light-grey');
+    color: colour('dark-grey');
   }
 
   .checklist-text-wrapper {

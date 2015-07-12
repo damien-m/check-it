@@ -1,4 +1,9 @@
+@import 'variables';
+@import 'mixins/font-size';
+@import 'mixins/media-queries';
+
 $body-bg-colour: colour('light-grey');
+$sub-title-colour: colour('dark-grey', 2);
 
 body {
   background: $body-bg-colour;
@@ -7,11 +12,25 @@ body {
 
 header {
   text-align: center;
+
   .app-title{
-    margin-bottom: spacing(1);
-    font-size: font-scale(3);
+    margin: spacing(.25);
+    font-size: font-scale(2);
+    text-transform: uppercase;
+    font-weight: bold;
+    @include mq($smartphone-max-width) {
+      @include font-size(3);
+      margin: spacing(.5);
+    }
   }
   .app-sub-title {
-    font-size: font-scale(2);
+    margin: spacing(.25);
+    font-size: font-scale(1);
+    text-transform: uppercase;
+    color: $sub-title-colour;
+    @include mq($smartphone-max-width) {
+      @include font-size(2);
+      margin: spacing(.5);
+    }
   }
 }
