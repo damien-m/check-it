@@ -34,7 +34,6 @@ module.exports = function(config) {
       'bower_components/firebase/firebase.js',
       'bower_components/angularfire/dist/angularfire.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/jquery/dist/jquery.min.js',
       // endbower
       "app/scripts/**/*.js",
       "app/scripts/templates/*.html",
