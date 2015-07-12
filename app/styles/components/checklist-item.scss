@@ -20,16 +20,11 @@ $title-colour: colour('accent-blue');
     flex-shrink: 0;
     max-width: columns(1.25);
     padding: spacing(.5);
-
-    input {
-      display: block;
-      border: 1px solid red;
-      align-content: center;
-    }
   }
 
   .remove-button {
     @include button('light-grey');
+    margin-top: spacing(.25);
     color: colour('dark-grey');
   }
 
@@ -55,5 +50,10 @@ $title-colour: colour('accent-blue');
 
   .checklist-item-text {
     margin-top: spacing(.25);
+  }
+
+  input[type="text"],
+  textarea {
+    border: 1px solid $border-colour;
   }
 }

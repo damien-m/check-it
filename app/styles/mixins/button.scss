@@ -6,4 +6,9 @@ $button-border-radius: 5px;
   border-radius: $button-border-radius;
   background: colour($buttonColour);
   color: colour('white');
+  text-decoration: none;
+
+  &:hover {
+    background: colour($buttonColour, -2);
+  }
 }

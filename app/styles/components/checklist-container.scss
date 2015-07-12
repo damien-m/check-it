@@ -60,6 +60,11 @@ $label-colour: colour('white',3);
     @include mq($smartphone-max-width) {
       margin: spacing(2.5) 0;
     }
+
+    .remove-all-button{
+      @include button('dark-grey');
+      margin-top: spacing(.25);
+    }
   }
 
   .checklist-empty {
