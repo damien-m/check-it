@@ -35,10 +35,8 @@
       {{main.items.length}} items
     </span>
     <div class="actions-wrapper" >
-      <button
-        class="button save-list"
-        ng-if="main.notSaved()"
-        ng-click="main.saveItems()">Save</button>
+      <a ng-href="#/view"
+        class="button save-list">View</a>
         <button
         ng-click="main.toggleEditable()"
         class="button edit-list">Edit</button>
