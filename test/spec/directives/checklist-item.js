@@ -13,18 +13,11 @@ describe('Directive: checklistItem', function () {
 
   beforeEach(module('dir-templates'));
 
-  beforeEach(inject(function ($rootScope, $compile) {
+  beforeEach(inject(function ($rootScope, directiveHelpers) {
     scope = $rootScope.$new();
     elementDOM = angular.element('<checklist-item item="checkListItem" editable="editable"></checklist-item>');
-    compileDirective = function compileDirective(element, scope){
-      var compiled = $compile(element)(scope);
-      scope.$apply();
-      return compiled;
-    };
-
-    angEl = function wrappedElement(element) {
-      return angular.element(element);
-    };
+    compileDirective = directiveHelpers.compile;
+    angEl = directiveHelpers.wrapElement;
   }));
 
   it('shows the element text', function () {
