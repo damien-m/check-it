@@ -24,16 +24,17 @@
       </span>
     </div>
   </section>
-  <footer>
+  <footer ng-show="main.items.length">
     <span class="checklist-total" ng-if="main.items.length">
       {{main.items.length}} items
     </span>
-    <button
-      class="button save-list"
-      ng-show="main.items.length"
-      ng-click="main.saveItems()">Save</button>
-    <button
-      ng-click="main.toggleEditable()"
-      class="button edit-list">Edit</button>
+    <div class="actions-wrapper" >
+      <button
+        class="button save-list"
+        ng-click="main.saveItems()">Save</button>
+        <button
+        ng-click="main.toggleEditable()"
+        class="button edit-list">Edit</button>
+    </div>
   </footer>
 </div>

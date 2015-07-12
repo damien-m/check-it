@@ -51,10 +51,16 @@ describe('Controller: MainCtrl', function () {
       expect(MainCtrl.items.length).toBe(0);
     });
 
-    it('removes an item from the array at given index', function() {
+    it('removes an item from the list', function() {
       // FIXME: This passes with a changed api...
-      MainCtrl.addItem({text: "An Item"});
-      MainCtrl.removeListItem(0);
+      var newItem = {
+        title: "A Title",
+        text: "An Item",
+        $$hashkey: "_HASHKEY_"
+      };
+      MainCtrl.newItem =  newItem;
+      MainCtrl.addItem();
+      MainCtrl.removeListItem(newItem);
 
       expect(MainCtrl.items.length).toBe(0);
     });
@@ -73,14 +79,17 @@ describe('Controller: MainCtrl', function () {
   });
 
   describe("With a filled localStorage Object", function() {
+    var filledLocalStorage;
     beforeEach(inject(function($controller) {
-      var filledLocalStorage = {
+      filledLocalStorage = {
         items : [{
           title: "LS Item 1",
-          text: "Lorem 1"
+          text: "Lorem 1",
+          $$hashkey: "_MOCK_HASH_KEY_1"
         },{
           title: "LS Item 2",
-          text: "Lorem 2"
+          text: "Lorem 2",
+          $$hashkey: "_MOCK_HASH_KEY_2"
         }]
       };
 
@@ -91,6 +100,14 @@ describe('Controller: MainCtrl', function () {
 
     it('retrieves an item from localstorage on load', function(){
       expect(MainCtrl.items[0].title).toBe("LS Item 1");
+    });
+
+    it('removes an item from localStorgage when `removeListItem()` is called',
+      function(){
+        var itemToRemove = filledLocalStorage.items[0];
+        MainCtrl.removeListItem(itemToRemove);
+
+        expect(filledLocalStorage.items[0].title).toBe('LS Item 2');
     });
   });
 });

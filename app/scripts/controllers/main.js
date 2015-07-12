@@ -18,7 +18,6 @@ angular.module('checkItApp')
 
     this.addItem = function addItem() {
       if (this.newItem.title.length && this.newItem.text.length) {
-
         this.items.push({
           title: this.newItem.title,
           text: this.newItem.text,
@@ -31,8 +30,16 @@ angular.module('checkItApp')
     };
 
     this.removeListItem = function removeListItem(item) {
-      // console.log("REMOVE...", item);
-      // this.items.splice(index, 1);
+      var listIndex = this.items.map(function(listItem, index) {
+          if(listItem.$$hashkey === item.$$hashkey) {
+            return index;
+          }
+      });
+
+      if(listIndex) {
+        this.items.splice(listIndex, 1);
+        $localStorage.items = this.items;
+      }
     };
 
     this.saveItems = function saveList(){

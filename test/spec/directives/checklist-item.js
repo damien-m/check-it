@@ -59,7 +59,6 @@ describe('Directive: checklistItem', function () {
   });
 
   it("fires the remove function passed to it from it's parent ", function() {
-    // FIXME: This is overly complicated and possibly not working...
     var parentScope = jasmine.createSpyObj('parentScope', ['removeFn']);
     var scopeItem = {title: 'Test', text: 'Lorem'};
     scope.removeFn = parentScope.removeFn;
