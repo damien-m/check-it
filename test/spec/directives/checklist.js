@@ -75,9 +75,52 @@ describe('Directive: checklist', function () {
       controller.newItem = {title: 'Adding', text: 'An item'};
       controller.addItem();
       scope.$apply();
-      
+
       var listItems = $(element).find('checklist-item');
       expect(listItems.length).toBe(4);
+    });
+
+    it('resets the newItem object when item added', function(){
+      controller.newItem = {
+        title: "Added",
+        text: "Lorem"
+      };
+
+      controller.addItem();
+      expect(controller.newItem).toEqual({title: '', text: ''});
+    });
+
+    it("doesn't allow blank text to be added", function(){
+      controller.newItem = {
+        title: '',
+        text: ''
+      };
+      controller.addItem();
+      expect(controller.items.length).not.toBe(4);
+    });
+
+    it('removes an item', function(){
+      var newItem = {
+        title: "A Title",
+        text: "An Item",
+        $$hashkey: "_HASHKEY_"
+      };
+      controller.newItem =  newItem;
+      controller.addItem();
+      controller.removeListItem(newItem);
+
+      expect(controller.items.length).not.toBe(4);
+    });
+
+    it('removes all from the list', function() {
+      controller.updateable = true;
+      controller.removeAllItems();
+      expect(controller.items.length).toBe(0);
+    });
+
+    it('removing all sets updateable to be false', function() {
+      controller.removeAllItems();
+      expect(controller.updateable).toBe(false);
     });
 
   });
