@@ -7,7 +7,7 @@
  * # checklist
  */
 angular.module('checkItApp')
-  .directive('checklist', function() {
+  .directive('checklist', function($localStorage) {
     return {
       templateUrl: '/scripts/templates/checklist.html',
       scope: {
@@ -17,12 +17,22 @@ angular.module('checkItApp')
       bindToController: true,
       controllerAs: 'checklist',
       controller: function checklistController($scope) {
-        if($scope.editable) {
-          $scope.newItem = {
-            title: '',
-            text: ''
-          };
+        if(this.editable){
+          this.newItem = {title: '', text: ''};
         }
+
+        this.addItem = function addItem() {
+          if (this.newItem.title.length && this.newItem.text.length) {
+            this.items.push({
+              title: this.newItem.title,
+              text: this.newItem.text,
+              completed: false
+            });
+
+            this.newItem.title = '';
+            this.newItem.text = '';
+          }
+        };
       }
     };
   });

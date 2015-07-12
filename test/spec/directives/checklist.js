@@ -41,6 +41,8 @@ describe('Directive: checklist', function () {
   });
 
   describe('When editable', function(){
+    var controller;
+
     beforeEach(function(){
       var testItems = [
         { title: 'One', text: 'Lorem 1'},
@@ -52,6 +54,7 @@ describe('Directive: checklist', function () {
 
       element =
         compileDirective('<checklist items="items" editable="editable" />', scope);
+      controller = element.controller('checklist');
     });
 
     it('shows the header for adding items', function(){
@@ -65,7 +68,16 @@ describe('Directive: checklist', function () {
     });
 
     it('creates a new item object for adding items', function(){
-      expect(isolateScope.newItem).toBeDefined
+      expect(controller.newItem).toBeDefined();
+    });
+
+    it('adds a new item', function(){
+      controller.newItem = {title: 'Adding', text: 'An item'};
+      controller.addItem();
+      scope.$apply();
+      
+      var listItems = $(element).find('checklist-item');
+      expect(listItems.length).toBe(4);
     });
 
   });
