@@ -3,10 +3,13 @@
 @import 'mixins/button';
 
 $checklist-bg-colour: colour('white', 1);
-$empty-list-colour: colour('light-grey', 1);
+$empty-list-text-colour: colour('dark-grey', 1);
 $header-bg-colour: colour('blue');
 $footer-bg-colour: colour('light-grey', -3);
-$standard-padding: spacing(1);
+$standard-padding: spacing(.5);
+$input-bg: white;
+$input-text: colour('dark-grey', -3);
+$label-colour: colour('white',3);
 
 .checklist-container {
   margin: 0 auto;
@@ -25,8 +28,29 @@ $standard-padding: spacing(1);
     padding: $standard-padding;
     background: $header-bg-colour;
 
+    label {
+      color:$label-colour;
+    }
+
+    input[type="text"],
+    textarea {
+      border: 1px solid transparent;
+      background: rgba($input-bg,.3);
+      color: $input-bg;
+
+      &:focus {
+        border: 1px solid white;
+        color: $input-text;
+        background: rgba($input-bg, .6);
+      }
+    }
+
     .button {
       @include button('green');
+      margin-top: spacing(.25);
+      @include mq($tablet-max-width) {
+        margin: spacing(1) spacing(3) 0;
+      }
     }
   }
 
@@ -39,7 +63,7 @@ $standard-padding: spacing(1);
   }
 
   .checklist-empty {
-    color: $empty-list-colour;
+    color: $empty-list-text-colour;
     font-style: italic;
   }
 

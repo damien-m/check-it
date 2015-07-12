@@ -1,0 +1,27 @@
+@import 'variables';
+@import 'mixins/media-queries';
+@import 'mixins/font-size';
+
+.input-group {
+  margin-top: spacing(.25);
+  label {
+    display:block;
+    text-align: left;
+  }
+
+  input[type="text"],
+  textarea {
+    @include font-size(0);
+    padding: spacing(.25);
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  @include mq($tablet-max-width) {
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
