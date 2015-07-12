@@ -1,0 +1,32 @@
+<section class="checklist">
+  <header class="checklist-header" ng-if="checklist.editable">
+    <div class="input-group">
+      <label for="new-item-title">Title: </label>
+      <input type="text" ng-model="checklist.newItem.title"/>
+    </div>
+    <div class="input-group">
+      <label for="new-item-text">Text: </label>
+      <textarea ng-model="checklist.newItem.text"></textarea>
+    </div>
+    <button class="button add-item" ng-click="checklist.addItem()">Add Item</button>
+  </header>
+  <div class="checklist-wrapper">
+    <checklist-item item="item"
+      ng-repeat="item in checklist.items" editable="checklist.editable">
+    </checklist-item>
+  </div>
+  <footer class="checklist-footer" ng-show="checklist.items.length">
+    <span class="checklist-total" ng-if="checklist.items.length">
+      {{checklist.items.length}} items
+    </span>
+    <div
+      ng-if="checklist.editable"
+      class="actions-wrapper" >
+      <a ng-href="#/view"
+        class="button save-list">View</a>
+        <button
+        ng-click="checklist.toggleEditable()"
+        class="button edit-list">Edit</button>
+    </div>
+  </footer>
+</section>
