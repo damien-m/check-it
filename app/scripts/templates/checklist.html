@@ -24,9 +24,16 @@
       class="actions-wrapper" >
       <a ng-href="#/view"
         class="button save-list">View</a>
-        <button
+      <button
         ng-click="checklist.toggleUpdateable()"
-        class="button edit-list">Edit</button>
+        class="button edit-list">
+        Edit
+      </button>
+      <button
+        class="button new-list"
+        ng-click="checklist.createNew()">
+        New
+      </button>
     </div>
   </footer>
 </section>

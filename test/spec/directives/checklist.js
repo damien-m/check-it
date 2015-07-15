@@ -42,7 +42,6 @@ describe('Directive: checklist', function () {
 
   describe('When editable', function(){
     var controller;
-
     beforeEach(function(){
       var testItems = [
         { title: 'One', text: 'Lorem 1'},
@@ -123,5 +122,9 @@ describe('Directive: checklist', function () {
       expect(controller.updateable).toBe(false);
     });
 
+    it('a new list is created', function(){
+      controller.createNew();
+      expect(controller.items.length).toBe(0);
+    });
   });
 });

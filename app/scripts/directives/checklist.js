@@ -57,6 +57,12 @@ angular.module('checkItApp')
         this.toggleUpdateable = function toggleUpdateable() {
           this.updateable = !this.updateable;
         };
+
+        this.createNew = function createNew() {
+          //This will clear the list for now, when title is added,
+          //this will create a new list altogether (with ability to switch)
+          $localStorage.items = this.items = [];
+        };
       }
     };
   });

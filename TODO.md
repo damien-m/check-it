@@ -1,5 +1,5 @@
 #Things still todo:
- - [ ] create a new (delete existing one)
+ - [x] create a new (delete existing one)
  - [ ] Write logic for diplay (only allow next to complete to show a checkbox)
  - [ ] Keep a running count of completions
  - [ ] Change the checkbox for something more flashy
