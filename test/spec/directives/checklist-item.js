@@ -15,7 +15,7 @@ describe('Directive: checklistItem', function () {
 
   beforeEach(inject(function ($rootScope, directiveHelpers) {
     scope = $rootScope.$new();
-    elementDOM = angular.element('<checklist-item item="checkListItem" editable="editable"></checklist-item>');
+    elementDOM = '<checklist-item item="checkListItem" editable="editable"></checklist-item>';
     compileDirective = directiveHelpers.compile;
     angEl = directiveHelpers.wrapElement;
   }));
