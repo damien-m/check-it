@@ -83,5 +83,9 @@ $label-colour: colour('white',3);
     .edit-list {
       @include button('red')
     }
+
+    .new-list {
+      @include button('green');
+    }
   }
 }

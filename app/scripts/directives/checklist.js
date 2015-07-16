@@ -7,7 +7,7 @@
  * # checklist
  */
 angular.module('checkItApp')
-  .directive('checklist', function($localStorage) {
+  .directive('checklist', function($window, $localStorage) {
     return {
       templateUrl: '/scripts/templates/checklist.html',
       scope: {
@@ -61,7 +61,9 @@ angular.module('checkItApp')
         this.createNew = function createNew() {
           //This will clear the list for now, when title is added,
           //this will create a new list altogether (with ability to switch)
-          $localStorage.items = this.items = [];
+          if ($window.confirm('This will delete the existing list. Is this ok?')) {
+            $localStorage.items = this.items = [];
+          }
         };
       }
     };

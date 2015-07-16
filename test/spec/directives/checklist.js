@@ -2,15 +2,16 @@
 /* globals $ */
 describe('Directive: checklist', function () {
 
-  var scope, compileDirective, angEl, element;
+  var scope, compileDirective, angEl, element, $window;
 
   beforeEach(module('checkItApp'));
   beforeEach(module('dir-templates'));
 
-  beforeEach(inject(function($rootScope, $compile, directiveHelpers) {
+  beforeEach(inject(function($rootScope, $compile, directiveHelpers, _$window_) {
     scope = $rootScope.$new();
     compileDirective = directiveHelpers.compile;
     angEl = directiveHelpers.wrapElement;
+    $window = _$window_;
   }));
 
   describe("When not editable", function(){
@@ -123,7 +124,11 @@ describe('Directive: checklist', function () {
     });
 
     it('a new list is created', function(){
+      spyOn($window, 'confirm').and.callFake(function(){
+        return true;
+      });
       controller.createNew();
+      expect($window.confirm).toHaveBeenCalled();
       expect(controller.items.length).toBe(0);
     });
   });
