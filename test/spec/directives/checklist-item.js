@@ -26,7 +26,7 @@ describe('Directive: checklistItem', function () {
     };
     element = compileDirective(elementDOM, scope);
 
-    var elementTitle  = angEl(element[0].querySelector('.checklist-item-title'));
+    var elementTitle  = $(element).find('.checklist-item-title');
 
     expect(elementTitle.text()).toBe('First Item');
   });
@@ -36,7 +36,7 @@ describe('Directive: checklistItem', function () {
       completed: false
     };
     element = compileDirective(elementDOM, scope);
-    var wrapperElement = angEl(element.find('div')[0]);
+    var wrapperElement = $(element).find('div');
     scope.checkListItem.completed = true;
     scope.$apply();
 
