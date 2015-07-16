@@ -43,47 +43,67 @@ describe('Directive: checklistItem', function () {
     expect(wrapperElement.hasClass('completed')).toBe(true);
   });
 
-  it("fires the remove function passed to it from it's parent ", function() {
-    var parentScope = jasmine.createSpyObj('parentScope', ['removeFn']);
-    var scopeItem = {title: 'Test', text: 'Lorem'};
-    scope.removeFn = parentScope.removeFn;
-    scope.editable = true;
-    scope.checklistItem = scopeItem;
-
-    var localDOM = '<checklist-item ' +
-      'item="checkListItem" editable="editable" remove="removeFn(item)">' +
-    '</checklist-item>';
-
-    element = compileDirective(localDOM, scope);
-    var removeButton = $(element).find('.remove-button').get(0);
-    removeButton.click();
-
-    scope.$apply();
-    expect(parentScope.removeFn).toHaveBeenCalled();
-  });
 
   it('disables checking initially', function(){
     scope.checklistItem = {
       checkable: false
     };
-    scope.editable = false;
-    scope.removeFn = angular.noop;
-    var localDOM = '<checklist-item ' +
-      'item="checkListItem" editable="editable" remove="removeFn(item)">' +
-    '</checklist-item>';
-    element = compileDirective(localDOM, scope);
+    element = compileDirective(elementDOM, scope);
     var checkbox = $(element).find('.checklist-item-complete');
 
     expect(checkbox.prop('disabled')).toBe(true);
   });
 
+  xit('calls the completed function on the parent when checked', function(){
+    var parentScope = jasmine.createSpyObj('parentScope', ['completedFn']);
+    var scopeItem = {title: 'Test', text: 'Lorem', checkable: true};
+
+    scope.completedFn = parentScope.completedFn;
+    scope.editable = true;
+    scope.checklistItem = scopeItem;
+
+    var localDOM = '<checklist-item ' +
+      'item="checkListItem" completed="completedFn(index)" index="2">' +
+    '</checklist-item>';
+
+    element = compileDirective(localDOM, scope);
+
+    var checkbox = $(element).find('.checklist-item-complete').get(0);
+    checkbox.click();
+    scope.$apply();
+
+    expect(parentScope.completedFn).toHaveBeenCalled();
+  });
+
   describe('when the item is editable', function() {
-    it('shows the remove button if the item is editable', function(){
+
+    beforeEach(function(){
       scope.editable = true;
+    });
+
+    it('shows the remove button if the item is editable', function(){
       element = compileDirective(elementDOM, scope);
       var removeButton = $(element).find('.remove-button');
 
       expect(removeButton.length).toBe(1);
+    });
+
+    it("fires the remove function passed to it from it's parent ", function() {
+      var parentScope = jasmine.createSpyObj('parentScope', ['removeFn']);
+      var scopeItem = {title: 'Test', text: 'Lorem'};
+      scope.removeFn = parentScope.removeFn;
+      scope.checklistItem = scopeItem;
+
+      var localDOM = '<checklist-item ' +
+        'item="checkListItem" editable="editable" remove="removeFn(item)">' +
+      '</checklist-item>';
+
+      element = compileDirective(localDOM, scope);
+      var removeButton = $(element).find('.remove-button').get(0);
+      removeButton.click();
+
+      scope.$apply();
+      expect(parentScope.removeFn).toHaveBeenCalled();
     });
   });
 });

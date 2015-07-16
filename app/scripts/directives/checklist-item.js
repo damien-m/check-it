@@ -15,7 +15,9 @@ angular.module('checkItApp')
       scope: {
         item: '=',
         editable: '=',
-        remove: '&'
+        remove: '&',
+        index: '=',
+        completed: '&'
       },
       link: function postLink(scope, element) {
         var checkbox = angular.element(element.find('input'));
