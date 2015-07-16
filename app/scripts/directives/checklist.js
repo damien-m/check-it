@@ -25,9 +25,12 @@ angular.module('checkItApp')
 
         this.addItem = function addItem() {
           if (this.newItem.title.length && this.newItem.text.length) {
+            var checkableItem = this.items.length === 0;
+
             this.items.push({
               title: this.newItem.title,
               text: this.newItem.text,
+              checkable: checkableItem,
               completed: false
             });
 

@@ -28,6 +28,10 @@ describe('Directive: checklist', function () {
         compileDirective('<checklist items="items" editable="editable" />', scope);
     });
 
+    afterEach(function(){
+      scope.items = [];
+    });
+
     it("renders a list with a couple of items", function(){
       var listItems = $(element).find('checklist-item');
 
@@ -43,6 +47,7 @@ describe('Directive: checklist', function () {
 
   describe('When editable', function(){
     var controller;
+
     beforeEach(function(){
       var testItems = [
         { title: 'One', text: 'Lorem 1'},
@@ -78,6 +83,24 @@ describe('Directive: checklist', function () {
 
       var listItems = $(element).find('checklist-item');
       expect(listItems.length).toBe(4);
+    });
+
+    it('adds a checkable item for the first item', function(){
+      controller.items = [];
+      controller.newItem = {title: "Checkable", text: "Lorem"};
+      controller.addItem();
+      scope.$apply();
+
+      expect(controller.items[0].checkable).toBe(true);
+    });
+
+    it('sets checkable to be false for a second item added', function(){
+      controller.items = [];
+      controller.newItem = {title: "Check 1", text: "Lorem"};
+      controller.addItem();
+      controller.newItem = {title: "Check 2", text: "Lorem"};
+      controller.addItem();
+      expect(controller.items[1].checkable).toBe(false);
     });
 
     it('resets the newItem object when item added', function(){

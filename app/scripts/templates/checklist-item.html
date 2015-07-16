@@ -1,6 +1,11 @@
 <div class="checklist-item-wrapper" ng-class="{completed: item.completed}">
   <div class="checklist-item-toggler">
-    <input type="checkbox" ng-model="item.completed"/>
+    <input
+      type="checkbox"
+      class="checklist-item-complete"
+      ng-model="item.completed"
+      ng-disabled="!item.checkable"
+      />
   </div>
   <div class="checklist-text-wrapper">
     <div ng-if="!editable">

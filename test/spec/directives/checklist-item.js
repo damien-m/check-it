@@ -55,11 +55,26 @@ describe('Directive: checklistItem', function () {
     '</checklist-item>';
 
     element = compileDirective(localDOM, scope);
-    var removeButton = angEl($(element).find('.remove-button')[0]);
-    removeButton.eq(0).click();
+    var removeButton = $(element).find('.remove-button').get(0);
+    removeButton.click();
 
     scope.$apply();
     expect(parentScope.removeFn).toHaveBeenCalled();
+  });
+
+  it('disables checking initially', function(){
+    scope.checklistItem = {
+      checkable: false
+    };
+    scope.editable = false;
+    scope.removeFn = angular.noop;
+    var localDOM = '<checklist-item ' +
+      'item="checkListItem" editable="editable" remove="removeFn(item)">' +
+    '</checklist-item>';
+    element = compileDirective(localDOM, scope);
+    var checkbox = $(element).find('.checklist-item-complete');
+
+    expect(checkbox.prop('disabled')).toBe(true);
   });
 
   describe('when the item is editable', function() {
