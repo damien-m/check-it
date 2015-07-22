@@ -12,7 +12,11 @@
   </header>
   <div class="checklist-wrapper">
     <checklist-item item="item"
-      ng-repeat="item in checklist.items" editable="checklist.updateable">
+      ng-repeat="item in checklist.items"
+      editable="checklist.updateable"
+      completed="checklist.completed(index)"
+      index="$index"
+      >
     </checklist-item>
   </div>
   <footer class="checklist-footer" ng-show="checklist.items.length">

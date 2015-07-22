@@ -54,7 +54,7 @@ describe('Directive: checklistItem', function () {
     expect(checkbox.prop('disabled')).toBe(true);
   });
 
-  xit('calls the completed function on the parent when checked', function(){
+  it('calls the completed function on the parent when checked', function(){
     var parentScope = jasmine.createSpyObj('parentScope', ['completedFn']);
     var scopeItem = {title: 'Test', text: 'Lorem', checkable: true};
 
@@ -63,13 +63,13 @@ describe('Directive: checklistItem', function () {
     scope.checklistItem = scopeItem;
 
     var localDOM = '<checklist-item ' +
-      'item="checkListItem" completed="completedFn(index)" index="2">' +
+      'item="checklistItem" completed="completedFn()" index="2">' +
     '</checklist-item>';
 
     element = compileDirective(localDOM, scope);
 
-    var checkbox = $(element).find('.checklist-item-complete').get(0);
-    checkbox.click();
+    var checkbox = angEl(element.find('.checklist-item-complete')[0]);
+    checkbox.triggerHandler('click');
     scope.$apply();
 
     expect(parentScope.completedFn).toHaveBeenCalled();
