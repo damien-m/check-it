@@ -50,9 +50,9 @@ describe('Directive: checklist', function () {
 
     beforeEach(function(){
       var testItems = [
-        { title: 'One', text: 'Lorem 1'},
-        { title: 'Two', text: 'Lorem 2'},
-        { title: 'Three', text: 'Lorem 3'}
+        { title: 'One', text: 'Lorem 1', checkable: true},
+        { title: 'Two', text: 'Lorem 2', checkable: false},
+        { title: 'Three', text: 'Lorem 3', checkable: false}
       ];
       scope.items = testItems;
       scope.editable = true;
@@ -153,6 +153,40 @@ describe('Directive: checklist', function () {
       controller.createNew();
       expect($window.confirm).toHaveBeenCalled();
       expect(controller.items.length).toBe(0);
+    });
+
+    describe('Completed', function(){
+      var completedIndex;
+      beforeEach(function(){
+        completedIndex = 0;
+        controller.completed(completedIndex);
+      });
+
+      it('sets the next item as checkable', function(){
+        expect(controller.items[ completedIndex + 1 ].checkable).toBe(true);
+      });
+
+      it('tracks the latest item to be checked', function(){
+        expect(controller.lastCompletedItem).not.toBeUndefined();
+      });
+
+      it("doesn't set checkable on an item that's not in the list", function(){
+        completedIndex = 5;
+        controller.completed(completedIndex);
+        expect(controller.lastCompletedItem).toEqual(0);
+      });
+
+      it('resets the checkable state when index is less than currentItem',
+        function(){
+          completedIndex++;
+          controller.completed(completedIndex);
+          completedIndex = 0;
+          controller.completed(completedIndex);
+
+          expect(controller.items[2].checkable).toBe(false);
+      });
+
+
     });
   });
 });

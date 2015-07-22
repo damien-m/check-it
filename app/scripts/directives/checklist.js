@@ -6,8 +6,9 @@
  * @description
  * # checklist
  */
+
 angular.module('checkItApp')
-  .directive('checklist', function($window, $localStorage) {
+  .directive('checklist', function() {
     return {
       templateUrl: '/scripts/templates/checklist.html',
       scope: {
@@ -16,8 +17,9 @@ angular.module('checkItApp')
       },
       bindToController: true,
       controllerAs: 'checklist',
-      controller: function checklistController() {
+      controller: function checklistController($window, $localStorage) {
         this.updateable = false;
+        this.lastCompletedItem = undefined;
 
         if(this.editable){
           this.newItem = {title: '', text: ''};
@@ -67,6 +69,23 @@ angular.module('checkItApp')
           if ($window.confirm('This will delete the existing list. Is this ok?')) {
             $localStorage.items = this.items = [];
           }
+        };
+
+        this.completed = function completed(index) {
+          if (index > this.items.length) {
+            return;
+          }
+
+          if (index < this.lastCompletedItem) {
+            angular.forEach(this.items, function(item, i){
+              if(i > index){
+                item.checkable = false;
+              }
+            });
+          } else {
+            this.items[index + 1].checkable = true;
+          }
+          this.lastCompletedItem = index;
         };
       }
     };
