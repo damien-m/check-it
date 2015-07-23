@@ -216,6 +216,8 @@ describe('Directive: checklist', function () {
     });
 
     it('clears all items checked and completed when setComplete', function(){
+      controller.items[0].completed = true;
+      controller.completed(0);
       controller.setCompleted();
       expect(controller.items[0].completed).toBe(false);
     });

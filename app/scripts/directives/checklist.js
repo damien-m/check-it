@@ -72,9 +72,10 @@ angular.module('checkItApp')
           }
         };
 
-        this._unsetItems = function _unsetItems(index){
+        this._unsetItems = function _unsetItems(index, includeIndex) {
+
           this.items.map(function(item, i) {
-            if(i > index){
+            if (i > index || includeIndex) {
               item.checkable = false;
               item.completed = false;
             }
@@ -106,8 +107,8 @@ angular.module('checkItApp')
           }
         };
 
-        this.setCompleted = function setCompleted(){
-          this._unsetItems(0);
+        this.setCompleted = function setCompleted() {
+          this._unsetItems(0, true);
         };
       }
     };
