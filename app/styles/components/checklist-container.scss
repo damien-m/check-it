@@ -76,6 +76,10 @@ $label-colour: colour('white',3);
     padding: $standard-padding;
     background: $footer-bg-colour;
 
+    .button {
+      @include button('green');
+    }
+
     .save-list {
       @include button('accent-blue');
     }

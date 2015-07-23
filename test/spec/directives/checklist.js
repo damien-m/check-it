@@ -50,9 +50,9 @@ describe('Directive: checklist', function () {
 
     beforeEach(function(){
       var testItems = [
-        { title: 'One', text: 'Lorem 1', checkable: true},
-        { title: 'Two', text: 'Lorem 2', checkable: false},
-        { title: 'Three', text: 'Lorem 3', checkable: false}
+        { title: 'One', text: 'Lorem 1', checkable: true, completed: false},
+        { title: 'Two', text: 'Lorem 2', checkable: false, completed: false},
+        { title: 'Three', text: 'Lorem 3', checkable: false, completed: false}
       ];
       scope.items = testItems;
       scope.editable = true;
@@ -203,6 +203,21 @@ describe('Directive: checklist', function () {
           controller.completed(completedIndex);
           expect(controller.items[2].completed).toBe(false);
       });
+
+      it('calls the completed function when all items are ticked', function(){
+        completedIndex++;
+        controller.completed(completedIndex);
+        completedIndex++;
+        controller.items[completedIndex].completed = true;
+        controller.completed(completedIndex);
+
+        expect(controller.listComplete).toBe(true);
+      });
+    });
+
+    it('clears all items checked and completed when setComplete', function(){
+      controller.setCompleted();
+      expect(controller.items[0].completed).toBe(false);
     });
   });
 });

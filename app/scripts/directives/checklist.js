@@ -20,6 +20,7 @@ angular.module('checkItApp')
       controller: function checklistController($window, $scope, $localStorage) {
         this.updateable = false;
         this.lastCompletedItem = undefined;
+        this.listComplete = false;
 
         if(this.editable){
           this.newItem = {title: '', text: ''};
@@ -71,31 +72,42 @@ angular.module('checkItApp')
           }
         };
 
+        this._unsetItems = function _unsetItems(index){
+          this.items.map(function(item, i) {
+            if(i > index){
+              item.checkable = false;
+              item.completed = false;
+            }
+          });
+        };
+
+        this._listComplete = function _listComplete(index) {
+          return index + 1 === this.items.length && this.items[index].completed;
+        };
+
         this.completed = function completed(index) {
           if (index > this.items.length) { return; }
 
           if (index < this.lastCompletedItem) {
-            this.items.map(function(item, i) {
-              if(i > index) {
-                item.checkable = false;
-                item.completed = false;
-              }
-              return item;
-            });
+            this._unsetItems(index);
           } else {
-            if (this.items[index].completed) {
+            if (this.items[index].completed && this.items[index+1]) {
               this.items[index + 1].checkable = true;
             } else {
-              this.items.map(function(item, i) {
-                if(i > index){
-                  item.checkable = false;
-                  item.completed = false;
-                }
-              });
+              this._unsetItems(index);
             }
           }
-          $scope.$apply();
+
           this.lastCompletedItem = index;
+          $scope.$apply();
+
+          if (this._listComplete(index)) {
+            this.listComplete = true;
+          }
+        };
+
+        this.setCompleted = function setCompleted(){
+          this._unsetItems(0);
         };
       }
     };

@@ -20,12 +20,18 @@
     </checklist-item>
   </div>
   <footer class="checklist-footer" ng-show="checklist.items.length">
-    <span class="checklist-total" ng-if="checklist.items.length">
-      {{checklist.items.length}} items
-    </span>
+    <div class="checklist-footer__actions--view">
+      <span class="checklist-total" ng-if="checklist.items.length">
+        {{checklist.items.length}} items
+      </span>
+      <button
+        class="button"
+        ng-if="checklist.listComplete"
+        ng-click="checklist.setCompleted()">Complete List</button>
+  </div>
     <div
       ng-if="checklist.editable"
-      class="actions-wrapper" >
+      class="checklist-footer__actions--edit">
       <a ng-href="#/view"
         class="button save-list">View</a>
       <button
