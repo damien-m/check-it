@@ -17,7 +17,7 @@ angular.module('checkItApp')
       },
       bindToController: true,
       controllerAs: 'checklist',
-      controller: function checklistController($window, $localStorage) {
+      controller: function checklistController($window, $scope, $localStorage) {
         this.updateable = false;
         this.lastCompletedItem = undefined;
 
@@ -72,19 +72,29 @@ angular.module('checkItApp')
         };
 
         this.completed = function completed(index) {
-          if (index > this.items.length) {
-            return;
-          }
+          if (index > this.items.length) { return; }
 
           if (index < this.lastCompletedItem) {
-            angular.forEach(this.items, function(item, i){
-              if(i > index){
+            this.items.map(function(item, i) {
+              if(i > index) {
                 item.checkable = false;
+                item.completed = false;
               }
+              return item;
             });
           } else {
-            this.items[index + 1].checkable = true;
+            if (this.items[index].completed) {
+              this.items[index + 1].checkable = true;
+            } else {
+              this.items.map(function(item, i) {
+                if(i > index){
+                  item.checkable = false;
+                  item.completed = false;
+                }
+              });
+            }
           }
+          $scope.$apply();
           this.lastCompletedItem = index;
         };
       }

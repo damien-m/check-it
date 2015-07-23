@@ -45,7 +45,7 @@ describe('Directive: checklist', function () {
 
   });
 
-  describe('When editable', function(){
+  describe('- when editable', function(){
     var controller;
 
     beforeEach(function(){
@@ -155,10 +155,12 @@ describe('Directive: checklist', function () {
       expect(controller.items.length).toBe(0);
     });
 
-    describe('Completed', function(){
+    describe('- completed()', function(){
       var completedIndex;
+
       beforeEach(function(){
         completedIndex = 0;
+        controller.items[completedIndex].completed = true;
         controller.completed(completedIndex);
       });
 
@@ -176,6 +178,13 @@ describe('Directive: checklist', function () {
         expect(controller.lastCompletedItem).toEqual(0);
       });
 
+      it('only sets the next item as checkable when the item has been completed',
+        function(){
+          controller.items[completedIndex].completed = false;
+          controller.completed(completedIndex);
+          expect(controller.items[completedIndex + 1].checkable).toBe(false);
+      });
+
       it('resets the checkable state when index is less than currentItem',
         function(){
           completedIndex++;
@@ -186,7 +195,14 @@ describe('Directive: checklist', function () {
           expect(controller.items[2].checkable).toBe(false);
       });
 
-
+      it('resets the completed state when an index is less than currentItem',
+        function(){
+          completedIndex++;
+          controller.completed(completedIndex);
+          completedIndex = 0;
+          controller.completed(completedIndex);
+          expect(controller.items[2].completed).toBe(false);
+      });
     });
   });
 });
